@@ -1,3 +1,5 @@
+---@param emoji_aliases EmojiAPI.EmojiAliases
+---@return EmojiAPI
 return function(emoji_aliases)
 	---@class EmojiAPI
 	local api = {}

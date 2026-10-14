@@ -46,6 +46,8 @@
 ---@field font string The font used to render this emoji
 ---@field blacklisted boolean Whether this emoji is blacklisted
 
+---@alias EmojiAPI.EmojiAliases table<string, EmojiAPI.EmojiExtended>
+
 ---@class EmojiAPI.Category
 ---@field width integer?
 ---@field height integer?
@@ -95,7 +97,7 @@ end
 
 local is_done = false
 
----@type table<string, EmojiAPI.EmojiExtended>
+---@type EmojiAPI.EmojiAliases
 local emoji_aliases = {}
 local function promise()
 	return is_done and emoji_aliases
