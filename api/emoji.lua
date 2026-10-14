@@ -12,8 +12,10 @@ local __meta = {
 	__metatable = false,
 }
 
+---Returns `false` if emojis are still being loaded
 ---@return boolean
-function api:isLoaded()
+---@nodiscard
+function api.isLoaded()
 	return status.done
 end
 
@@ -21,7 +23,7 @@ end
 ---@param alias string
 ---@return Emoji?
 ---@nodiscard
-function api:getEmoji(alias)
+function api.getEmoji(alias)
 	local emoji = emoji_aliases[alias:match(".-([^:]+)")]
 	if not emoji then return end
 	return setmetatable({
