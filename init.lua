@@ -1,8 +1,8 @@
-local promise = require("./loader")
+local promise = require("./api/loader")
 
 local function await()
 	if promise() then
-		print(require("./api")(promise()))
+		avatar:store("EmojiAPI", require("./api/emoji")(promise()))
 		events.tick:remove(await)
 	end
 end

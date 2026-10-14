@@ -1,0 +1,12 @@
+{
+	"name": "EmojiAPI",
+	"description": "EmojiAPI",
+	"authors": ["Bitslayn"],
+	"color": "#fc6c85",
+	"badge_color_donator": "#fc6c85",
+	"autoScripts": ["init"],
+	"resources": [
+		"**/assets/v2/emojis/**.json",
+		"**/assets/v2/font/**.json"
+	]
+}
