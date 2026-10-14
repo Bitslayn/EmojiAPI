@@ -29,6 +29,7 @@ function api.getEmoji(alias)
 	return setmetatable({
 		char = emoji.char,
 		category = emoji.category,
+		font = emoji.font,
 		names = emoji.names,
 		shortcuts = emoji.shortcuts,
 		frames = emoji.frames,
