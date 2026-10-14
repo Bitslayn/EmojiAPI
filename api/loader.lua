@@ -101,6 +101,10 @@ local emoji_aliases = {}
 local category_name, category = next(emoji_categories)
 ---@cast category EmojiAPI.Category
 
+if not category then
+	print("Failed not load assets!", 4)
+end
+
 local char, emoji = next(category.emojis)
 ---@cast emoji EmojiAPI.Emoji|string[]
 
