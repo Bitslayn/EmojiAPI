@@ -102,6 +102,38 @@ local function promise()
 end
 
 local category_name, category = next(emoji_categories)
+---@cast category EmojiAPI.Category
+
+local char, emoji = next(category.emojis)
+---@cast emoji EmojiAPI.Emoji|string[]
+
+local function build_async()
+	if not char then return true end
+
+	---@cast category_name EmojiAPI.CategoryName
+
+	if emoji.names then
+		for j = 1, #emoji.names do
+			---@cast emoji EmojiAPI.EmojiExtended
+			emoji.char = char
+			emoji.category = category_name
+			emoji.font = "figura:emoji_" .. category_name
+			emoji.blacklisted = category.blacklist:find(emoji.char) ~= nil
+			emoji_aliases[emoji.names[j]] = emoji
+		end
+	else
+		for j = 1, #emoji do
+			emoji_aliases[emoji[j]] = {
+				char = char,
+				category = category_name,
+				font = "figura:emoji_" .. category_name,
+				names = emoji, --[[@as (string[])]]
+				blacklisted = category.blacklist:find(char) ~= nil,
+			}
+		end
+	end
+end
+
 local function load_async()
 	if not category_name then
 		is_done = true
@@ -109,29 +141,13 @@ local function load_async()
 		return
 	end
 
-	---@cast category EmojiAPI.Category
+	for i = 1, 65 do
+		char, emoji = next(category.emojis, char)
 
-	local emojis = category.emojis
-	for char, emoji in pairs(emojis) do
-		if emoji.names then
-			for j = 1, #emoji.names do
-				---@cast emoji EmojiAPI.EmojiExtended
-				emoji.char = char
-				emoji.category = category_name
-				emoji.font = "figura:emoji_" .. category_name
-				emoji.blacklisted = category.blacklist:find(emoji.char) ~= nil
-				emoji_aliases[emoji.names[j]] = emoji
-			end
-		else
-			for j = 1, #emoji do
-				emoji_aliases[emoji[j]] = {
-					char = char,
-					category = category_name,
-					font = "figura:emoji_" .. category_name,
-					names = emoji, --[[@as (string[])]]
-					blacklisted = category.blacklist:find(char) ~= nil,
-				}
-			end
+		if build_async() then
+			break
+		elseif i == 65 then
+			return
 		end
 	end
 
