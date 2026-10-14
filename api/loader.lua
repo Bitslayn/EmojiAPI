@@ -135,8 +135,11 @@ local function build_async()
 	end
 end
 
+local status = { done = false }
+
 local function load_async()
 	if not category_name then
+		status.done = true
 		events.render:remove(load_async)
 		return
 	end
@@ -155,4 +158,4 @@ local function load_async()
 end
 events.render:register(load_async)
 
-return emoji_aliases
+return emoji_aliases, status

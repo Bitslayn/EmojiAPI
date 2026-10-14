@@ -1,4 +1,5 @@
-local emoji_aliases = require("./loader")
+local emoji_aliases, status = require("./loader")
+---@cast status {done: boolean}
 
 ---@class EmojiAPI
 local api = {}
@@ -10,6 +11,11 @@ local __meta = {
 	__tostring = function(s) return s.char end,
 	__metatable = false,
 }
+
+---@return boolean
+function api:isLoaded()
+	return status.done
+end
 
 ---Returns an emoji matching the alias
 ---@param alias string
