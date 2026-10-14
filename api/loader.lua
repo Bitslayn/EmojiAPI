@@ -99,8 +99,10 @@ local is_done = false
 
 ---@type EmojiAPI.EmojiAliases
 local emoji_aliases = {}
+
+---@return EmojiAPI.EmojiAliases?
 local function promise()
-	return is_done and emoji_aliases
+	return is_done and emoji_aliases or nil
 end
 
 local category_name, category = next(emoji_categories)
