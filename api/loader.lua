@@ -95,15 +95,8 @@ for i = 1, #paths do
 	end
 end
 
-local is_done = false
-
 ---@type EmojiAPI.EmojiAliases
 local emoji_aliases = {}
-
----@return EmojiAPI.EmojiAliases?
-local function promise()
-	return is_done and emoji_aliases or nil
-end
 
 local category_name, category = next(emoji_categories)
 ---@cast category EmojiAPI.Category
@@ -140,7 +133,6 @@ end
 
 local function load_async()
 	if not category_name then
-		is_done = true
 		events.render:remove(load_async)
 		return
 	end
@@ -159,4 +151,4 @@ local function load_async()
 end
 events.render:register(load_async)
 
-return promise
+return emoji_aliases
