@@ -101,11 +101,8 @@ local function promise()
 	return is_done and emoji_aliases
 end
 
-local last_category_name
+local category_name, category = next(emoji_categories)
 local function load_async()
-	local category_name, category = next(emoji_categories, last_category_name)
-	last_category_name = category_name
-
 	if not category_name then
 		is_done = true
 		events.render:remove(load_async)
@@ -137,6 +134,8 @@ local function load_async()
 			end
 		end
 	end
+
+	category_name, category = next(emoji_categories, category_name)
 end
 events.render:register(load_async)
 
