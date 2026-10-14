@@ -78,9 +78,9 @@ local paths = resources:getPaths()
 for i = 1, #paths do
 	local store
 
-	if paths[i]:find("FiguraAssets/v2/emojis") then
+	if paths[i]:find("assets/v2/emojis") then
 		store = emoji_categories
-	elseif paths[i]:find("FiguraAssets/v2/font") then
+	elseif paths[i]:find("assets/v2/font") then
 		store = emoji_charsheet
 	end
 
