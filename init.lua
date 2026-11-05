@@ -2,7 +2,7 @@
 -- Currently within budget (50328 instructions)
 
 local t = avatar:getCurrentInstructions()
-require("./lib/emojis")
+require("./providers/aliases")
 print(avatar:getCurrentInstructions() - t - 4)
 
 -- avatar:store("EmojiAPI", api)
