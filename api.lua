@@ -11,7 +11,9 @@ local class = {}
 local emoji_cache = {}
 
 ---@return EmojiAPI.Emoji?
-function api:of(alias)
+---@nodiscard
+function api:getEmoji(alias)
+	alias = alias:match("[^:]+")
 	if not aliases[alias] then return end
 
 	if not emoji_cache[alias] then
