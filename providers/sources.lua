@@ -23,9 +23,11 @@ end
 --[[
 In your avatar.json, add these paths to your "resources" array:
 	"resources": [
-		"**/assets/v2/emojis/**.json",
-		"**/assets/v2/font/**.json"
+		"assets/v2/emojis/**.json",
+		"assets/v2/font/**.json"
 	]
+
+If you're using this as a submodule, prefix paths with **/
 ]]
 assert(next(sources.emojis), "Failed to load assets")
 

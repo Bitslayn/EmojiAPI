@@ -6,7 +6,7 @@
 	"badge_color_donator": "#fc6c85",
 	"autoScripts": ["init"],
 	"resources": [
-		"**/assets/v2/emojis/**.json",
-		"**/assets/v2/font/**.json"
+		"assets/v2/emojis/**.json",
+		"assets/v2/font/**.json"
 	]
 }
