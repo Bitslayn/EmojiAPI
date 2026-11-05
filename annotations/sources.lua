@@ -16,7 +16,7 @@
 ---@field emojis table<EmojiAPI.UnicodeChar, EmojiAPI.EmojiNames|EmojiAPI.EmojiComponent> List of emojis
 
 ---@class EmojiAPI.FontGroup
----@field providers EmojiAPI.FontGroup.Providers List of font providers
+---@field providers EmojiAPI.FontGroup.Providers[] List of font providers
 
 ---@alias EmojiAPI.FontGroup.Providers
 ---| EmojiAPI.FontGroup.Provider.Bitmap

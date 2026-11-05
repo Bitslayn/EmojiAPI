@@ -1,3 +1,5 @@
+---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
+local sources = require("./providers/sources")
 ---@type table<string, { char: EmojiAPI.UnicodeChar, group: EmojiAPI.EmojiKey }>
 local aliases = require("./providers/aliases")
 
@@ -41,6 +43,35 @@ end
 ---@nodiscard
 function class:asComponent()
 	return { text = self.char, font = "figura:emoji_" .. self.group }
+end
+
+---Returns the emoji's texture resource path
+---@return string
+---@nodiscard
+function class:getTexturePath()
+	return "figura:textures/font/emojis/" .. self.group .. ".png"
+end
+
+---Returns the emoji's UV position
+---@return Vector2
+---@nodiscard
+function class:getUV()
+	local font = sources.font["emoji_" .. self.group]
+
+	for i = 1, #font.providers do
+		local provider = font.providers[i]
+
+		if provider.type == "bitmap" then
+			for y = 1, #provider.chars do
+				local x = provider.chars[y]:match("()" .. self.char)
+				if x then
+					return vec((x - 1) / 3, y - 1) * provider.ascent
+				end
+			end
+		end
+	end
+
+	return vec(0, 0)
 end
 
 return api
