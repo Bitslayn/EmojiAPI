@@ -5,6 +5,8 @@ local aliases = require("./providers/aliases")
 local api = {}
 
 ---@class EmojiAPI.Emoji
+---@field package char string
+---@field package group string
 local class = {}
 
 ---Returns an emoji by its alias
