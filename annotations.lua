@@ -1,0 +1,64 @@
+---@alias EmojiAPI.UnicodeChar string A single unicode character
+---@alias EmojiAPI.UnicodeString string A string of unicode characters
+---@alias EmojiAPI.CategoryName
+---| "animal"
+---| "animated"
+---| "face_happy"
+---| "face_misc"
+---| "face_sad"
+---| "face_stress"
+---| "festive"
+---| "flag_a-d"
+---| "flag_e-k"
+---| "flag_l-q"
+---| "flag_r-z"
+---| "food"
+---| "gesture"
+---| "heart"
+---| "letters"
+---| "logo"
+---| "meme"
+---| "minecraft_animated"
+---| "minecraft_blocks"
+---| "minecraft_items"
+---| "minecraft_mobs"
+---| "misc"
+---| "nature"
+---| "object"
+---| "portrait"
+---| "pride"
+---| "reference"
+---| "reference_bloons"
+---| "reference_logo"
+---| "reference_retro"
+---| "symbol"
+
+---@class EmojiAPI.Emoji
+---@field names string[] Table of emoji aliases
+---@field shortcuts string[]? Table of unicode characters which get replaced by this emoji
+---@field frames integer? For animated emojis, the frame count
+---@field frametime integer? For animated emojis, the number of ticks to show each frame
+---@field color integer? The text color applied to this emoji by default
+
+---@class EmojiAPI.Category
+---@field width integer?
+---@field height integer?
+---@field blacklist EmojiAPI.UnicodeString Emojis that are blacklisted and cannot be used in the nameplate
+---@field emojis table<EmojiAPI.UnicodeChar, string[]|EmojiAPI.Emoji> List of emojis
+
+---@class EmojiAPI.Charsheet
+---@field providers EmojiAPI.Charsheet.Providers List of font providers
+
+---@alias EmojiAPI.Charsheet.Providers
+---| EmojiAPI.Charsheet.Provider.Bitmap
+---| EmojiAPI.Charsheet.Provider.Space
+
+---@class EmojiAPI.Charsheet.Provider.Bitmap
+---@field type "bitmap"
+---@field file string The resource path for these characters
+---@field ascent integer
+---@field chars EmojiAPI.UnicodeString[] Grid of unicode characters
+
+---@class EmojiAPI.Charsheet.Provider.Space
+---@field type "space"
+---@field advances table<EmojiAPI.UnicodeChar, integer> This character's width in pixels
