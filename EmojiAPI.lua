@@ -1,7 +1,9 @@
+local providers = require("./server/init")
+
 ---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
-local sources = require("./providers/sources")
+local sources = providers.sources
 ---@type table<string, { char: EmojiAPI.UnicodeChar, group: EmojiAPI.EmojiKey }>
-local aliases = require("./providers/aliases")
+local aliases = providers.aliases
 
 ---@class EmojiAPI
 local api = {}
