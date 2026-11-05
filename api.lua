@@ -26,6 +26,21 @@ function api:getEmoji(alias)
 	})
 end
 
+---Builds and returns a list of all emoji aliases
+---
+---This uses a LOT of instructions so don't use this if you can help it
+---@return string[]
+---@nodiscard
+function api:listAliases()
+	local list = {}
+	local index = 1
+	for alias in pairs(aliases) do
+		list[index] = alias
+		index = index + 1
+	end
+	return list
+end
+
 ---Returns the emoji's JSON component
 ---
 ---Alias for `EmojiAPI:getEmoji(alias):asComponent()`
