@@ -74,4 +74,22 @@ function class:getUV()
 	return vec(0, 0)
 end
 
+---Returns the emoji's frame count
+---
+---Returns `1` if the emoji isn't animated
+---@return integer
+---@nodiscard
+function class:getFrameCount()
+	return sources.emojis[self.group].emojis[self.char].frames or 1
+end
+
+---Returns the emoji's frame time
+---
+---Returns `0` if the emoji isn't animated
+---@return integer
+---@nodiscard
+function class:getFrametime()
+	return sources.emojis[self.group].emojis[self.char].frametime or 0
+end
+
 return api
