@@ -1,5 +1,10 @@
-local api = require("./api/emoji")
+-- !! 65536 instruction budget !!
+-- Currently within budget (50328 instructions)
 
-avatar:store("EmojiAPI", api)
+local t = avatar:getCurrentInstructions()
+require("./lib/emojis")
+print(avatar:getCurrentInstructions() - t - 4)
 
-return api
+-- avatar:store("EmojiAPI", api)
+
+-- return api
