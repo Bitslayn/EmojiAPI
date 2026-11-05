@@ -1,9 +1,5 @@
 ---@meta
 
----@alias EmojiAPI.Emoji
----| EmojiAPI.EmojiNames
----| EmojiAPI.EmojiComponent
-
 ---@alias EmojiAPI.EmojiNames string[]
 
 ---@class EmojiAPI.EmojiComponent
@@ -17,7 +13,7 @@
 ---@field width integer?
 ---@field height integer?
 ---@field blacklist EmojiAPI.UnicodeString Emojis that are blacklisted and cannot be used in the nameplate
----@field emojis table<EmojiAPI.UnicodeChar, EmojiAPI.Emoji> List of emojis
+---@field emojis table<EmojiAPI.UnicodeChar, EmojiAPI.EmojiNames|EmojiAPI.EmojiComponent> List of emojis
 
 ---@class EmojiAPI.FontGroup
 ---@field providers EmojiAPI.FontGroup.Providers List of font providers

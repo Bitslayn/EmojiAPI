@@ -3,6 +3,7 @@
 ---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
 local sources = require("./sources")
 
+---@type table<string, { char: EmojiAPI.UnicodeChar, group: EmojiAPI.EmojiKey }>
 local aliases = {}
 
 for group, source in pairs(sources.emojis) do
