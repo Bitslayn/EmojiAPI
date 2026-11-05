@@ -1,5 +1,5 @@
 ---@type EmojiAPI
-local api = require("./api")
+local api = require("./EmojiAPI")
 
 avatar:store("EmojiAPI", api)
 return api
