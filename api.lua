@@ -24,4 +24,23 @@ function api:getEmoji(alias)
 	})
 end
 
+---Returns the emoji's JSON component
+---@return { text: string, font: string }
+---@nodiscard
+function class:asComponent()
+	return { text = self.char, font = "figura:emoji_" .. self.group }
+end
+
+---Returns the emoji's JSON component
+---
+---Alias for `EmojiAPI:getEmoji(alias):asComponent()`
+---@param alias string
+---@return { text: string?, font: string? }
+---@nodiscard
+function api:of(alias)
+	local emoji = api:getEmoji(alias)
+	if not emoji then return {} end
+	return emoji:asComponent()
+end
+
 return api
