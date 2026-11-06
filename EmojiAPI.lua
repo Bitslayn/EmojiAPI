@@ -23,7 +23,7 @@ do
 		local vars = world.avatarVars()[uuid]
 		if not (vars and vars["EmojiAPI$getAssets"]) then return end
 
-		local providers = parseJson(vars["EmojiAPI$getAssets"])
+		local providers = parseJson(vars["EmojiAPI$getAssets"]())
 		sources = providers.sources
 		aliases = providers.aliases
 
