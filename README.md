@@ -2,7 +2,7 @@
 
 FOX's EmojiAPI is an API that allows you to access certain information about Figura emojis.
 
-# Setup Instructions
+## Setup Instructions
 
 - Download [EmojiAPI.lua](https://github.com/Bitslayn/EmojiAPI/blob/main/EmojiAPI.lua) or view [raw](https://raw.githubusercontent.com/Bitslayn/EmojiAPI/refs/heads/main/EmojiAPI.lua) and click `Save As...` in your context menu
 - Move the script to your avatar and require
@@ -18,7 +18,7 @@ if EmojiAPI:isLoaded() then
 end
 ```
 
-# Nameplate Hovertext
+## Nameplates
 
 The most common usecase I see this used is in nameplate hovertexts. This example is also useful anywhere Figura doesn't automatically convert emojis.
 
@@ -51,7 +51,7 @@ nameplate.ALL:setText(toJson({
 }))
 ```
 
-# Textures
+## Textures
 
 This example shows how to create a SpriteTask using an emoji's texture. You can apply the same logic to anything that expects a texture and UV, like action wheels.
 
