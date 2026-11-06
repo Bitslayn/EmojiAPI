@@ -1,4 +1,4 @@
-local providers = require("./server/init")
+local providers = parseJson(require("./server/init"))
 
 ---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
 local sources = providers.sources
