@@ -1,7 +1,9 @@
 local providers = parseJson(require("./server/init"))
 
+---@diagnostic disable-next-line: undefined-doc-name
 ---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
 local sources = providers.sources
+---@diagnostic disable-next-line: undefined-doc-name
 ---@type table<string, { char: EmojiAPI.UnicodeChar, group: EmojiAPI.EmojiKey }>
 local aliases = providers.aliases
 
