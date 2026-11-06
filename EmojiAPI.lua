@@ -1,11 +1,40 @@
-local providers = parseJson(require("./server/init"))
+local loaded = false
 
 ---@diagnostic disable-next-line: undefined-doc-name
 ---@type { emojis: table<EmojiAPI.EmojiKey, EmojiAPI.EmojiGroup>, font: table<EmojiAPI.FontKey, EmojiAPI.FontGroup> }
-local sources = providers.sources
+local sources
 ---@diagnostic disable-next-line: undefined-doc-name
 ---@type table<string, { char: EmojiAPI.UnicodeChar, group: EmojiAPI.EmojiKey }>
-local aliases = providers.aliases
+local aliases
+
+do
+	-- Forceloads an avatar by UUID
+	-- Creates an ItemTask in the two most common places that would render even while the player is unloaded
+
+	local uuid = "ef5981d9-8f70-41f6-9d84-ff9b4f2899df"
+	local head = world.newItem(string.format("player_head{SkullOwner:{Id:[I;%d,%d,%d,%d]}}", client.uuidToIntArray(uuid)))
+
+	models:newItem(""):setItem(head):scale(0)
+	models:newPart("", "Portrait"):newItem(""):setItem(head):scale(0)
+
+	-- Asyncrhonously awaits assets
+
+	local function await()
+		local vars = world.avatarVars()[uuid]
+		if not (vars and vars["EmojiAPI$getAssets"]) then return end
+
+		local providers = parseJson(vars["EmojiAPI$getAssets"])
+		sources = providers.sources
+		aliases = providers.aliases
+
+		loaded = true
+
+		events.world_render:remove(await)
+	end
+
+	await()
+	events.world_render:register(await)
+end
 
 ---@class EmojiAPI
 local api = {}
@@ -20,6 +49,10 @@ local class = {}
 ---@return EmojiAPI.Emoji?
 ---@nodiscard
 function api:getEmoji(alias)
+	if not loaded then
+		error("Tried to access EmojiAPI before initialization", 2)
+	end
+
 	alias = alias:match("[^:]+")
 	if not aliases[alias] then return end
 	return setmetatable({}, {
@@ -36,6 +69,10 @@ end
 ---@return string[]
 ---@nodiscard
 function api:listAliases()
+	if not loaded then
+		error("Tried to access EmojiAPI before initialization", 2)
+	end
+
 	local list = {}
 	local index = 1
 	for alias in pairs(aliases) do
@@ -43,6 +80,13 @@ function api:listAliases()
 		index = index + 1
 	end
 	return list
+end
+
+---Returns whether the assets are accessible
+---@return boolean
+---@nodiscard
+function api:isLoaded()
+	return loaded
 end
 
 ---Returns the emoji's JSON component
