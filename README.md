@@ -69,7 +69,7 @@ if EmojiAPI:isLoaded() then -- Remember to check if the API is loaded!
 	local texture = textures:fromVanilla("animal_emojis", emoji:getTexturePath())
 	local uv = emoji:getUV()
 
-	Gui:newSprite("fox_emoji")
+	local task = Gui:newSprite("fox_emoji")
 		:texture(texture, texture:getDimensions():unpack()) -- Texture and size
 		:uvPixels(uv) -- UV offset
 		:region(8, 8) -- Emojis are 8x8
@@ -77,10 +77,48 @@ if EmojiAPI:isLoaded() then -- Remember to check if the API is loaded!
 end
 ```
 
-# Animated Textures
+## Animated Textures
 
-For animated emojis, it is possible to view the number of frames as well as ticks per frame. These include `emoji:getFrameCount()` and `emoji:getFrametime()`.
+For animated emojis, it is possible to view the number of frames as well as ticks per frame. These include `emoji:getFrameCount()` and `emoji:getFrametime()`. This example adds a helper function to the previous snippet, allowing the SpriteTask to animate.
 
 ```lua
--- WIP
+---@param task SpriteTask
+---@param emoji EmojiAPI.Emoji
+local function tick_animation(task, emoji)
+	local frame = math.floor((world.getTime() / emoji:getFrametime()) % emoji:getFrameCount())
+	task:uvPixels(emoji:getUV() + vec(8, 0) * frame)
+end
+```
+
+Attaching the helper function like so:
+
+```lua
+local EmojiAPI = require("EmojiAPI")
+
+local Gui = models:newPart("Gui", "Gui")
+
+---@param task SpriteTask
+---@param emoji EmojiAPI.Emoji
+local function tick_animation(task, emoji)
+	local frame = math.floor((world.getTime() / emoji:getFrametime()) % emoji:getFrameCount())
+	task:uvPixels(emoji:getUV() + vec(8, 0) * frame)
+end
+
+if EmojiAPI:isLoaded() then -- Remember to check if the API is loaded!
+	local emoji = EmojiAPI:getEmoji("fox_tail")
+	if not emoji then return end
+
+	local texture = textures:fromVanilla("animated_emojis", emoji:getTexturePath())
+	local uv = emoji:getUV()
+
+	local task = Gui:newSprite("fox_tail_emoji")
+		:texture(texture, texture:getDimensions():unpack()) -- Texture and size
+		:uvPixels(uv) -- UV offset
+		:region(8, 8) -- Emojis are 8x8
+		:size(48, 48) -- Task size
+
+	function events.tick()
+		tick_animation(task, emoji) -- Call tick here
+	end
+end
 ```
