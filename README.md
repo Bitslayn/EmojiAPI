@@ -118,7 +118,7 @@ if EmojiAPI:isLoaded() then -- Remember to check if the API is loaded!
 		:size(48, 48) -- Task size
 
 	function events.tick()
-		tick_animation(task, emoji) -- Call tick here
+		tick_animation(task, emoji) -- Call helper here
 	end
 end
 ```
