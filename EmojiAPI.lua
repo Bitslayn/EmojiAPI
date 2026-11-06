@@ -25,7 +25,7 @@ do
 	-- Forceloads an avatar by UUID
 	-- Creates an ItemTask in the two most common places that would render even while the player is unloaded
 
-	local uuid = "ef5981d9-8f70-41f6-9d84-ff9b4f2899df"
+	local uuid = "1a455534-f020-4195-a1aa-6302b73c65ae"
 	local head = world.newItem(string.format("player_head{SkullOwner:{Id:[I;%d,%d,%d,%d]}}", client.uuidToIntArray(uuid)))
 
 	models:newItem(""):setItem(head):scale(0)
