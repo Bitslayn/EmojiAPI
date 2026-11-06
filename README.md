@@ -5,7 +5,7 @@ FOX's EmojiAPI is an API that allows you to access certain information about Fig
 ## Setup Instructions
 
 - Download [EmojiAPI.lua](https://github.com/Bitslayn/EmojiAPI/blob/main/EmojiAPI.lua) or view [raw](https://raw.githubusercontent.com/Bitslayn/EmojiAPI/refs/heads/main/EmojiAPI.lua) and click `Save As...` in your context menu
-- Move the script to your avatar and require
+- Move the script to your avatar, then require
 
 > [!CAUTION]
 > When requiring, you may want to check if the assets are accessible to you. This may not immediately be the case, so it is important to call `api:isLoaded()`.
