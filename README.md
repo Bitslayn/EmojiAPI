@@ -8,7 +8,7 @@ FOX's EmojiAPI is an API that allows you to access certain information about Fig
 - Move the script to your avatar, then require
 
 > [!CAUTION]
-> When requiring, you may want to check if the assets are accessible to you. This may not immediately be the case, so it is important to call `api:isLoaded()`.
+> When requiring, you may want to check if the assets are accessible to you. This may not immediately be the case, so it is important to call `EmojiAPI:isLoaded()`.
 
 ```lua
 local EmojiAPI = require("EmojiAPI")
