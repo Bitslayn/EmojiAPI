@@ -3,7 +3,7 @@ ____  ___ __   __
 | __|/ _ \\ \ / /
 | _|| (_) |> w <
 |_|  \___//_/ \_\
-FOX's EmojiAPI v1.0
+FOX's EmojiAPI v1.1
 
 Github: https://github.com/Bitslayn/EmojiAPI
 ]]
@@ -115,7 +115,7 @@ end
 ---@nodiscard
 function api:of(alias)
 	local emoji = api:getEmoji(alias)
-	if not emoji then return {} end
+	if not emoji then return { text = "" } end
 	return emoji:asComponent()
 end
 
